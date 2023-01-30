@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capstone RPG Manager", "Capstone RPG Manager\Capstone RPG Manager.csproj", "{0E9027BF-CD5A-4D9D-B0BB-5DDC81F5C54A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E9027BF-CD5A-4D9D-B0BB-5DDC81F5C54A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9027BF-CD5A-4D9D-B0BB-5DDC81F5C54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9027BF-CD5A-4D9D-B0BB-5DDC81F5C54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9027BF-CD5A-4D9D-B0BB-5DDC81F5C54A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43AA5205-0FAE-4075-B704-7F32A927AEA8}
+	EndGlobalSection
+EndGlobal

@@ -139,6 +139,10 @@
     <Compile Include="Migrations\202301311713284_DBCreated.designer.cs">
       <DependentUpon>202301311713284_DBCreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302021228489_ScambioAmbientazioneCampagna.cs" />
+    <Compile Include="Migrations\202302021228489_ScambioAmbientazioneCampagna.designer.cs">
+      <DependentUpon>202302021228489_ScambioAmbientazioneCampagna.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmbientazioniTab.cs" />
     <Compile Include="Models\AmicizieTab.cs" />
@@ -252,6 +256,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202301311713284_DBCreated.resx">
       <DependentUpon>202301311713284_DBCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302021228489_ScambioAmbientazioneCampagna.resx">
+      <DependentUpon>202302021228489_ScambioAmbientazioneCampagna.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

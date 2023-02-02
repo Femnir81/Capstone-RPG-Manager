@@ -31,10 +31,10 @@ namespace Capstone_RPG_Manager.Models
                 .HasForeignKey(e => e.IDAmbientazioniTab)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CampagneTab>()
-                .HasMany(e => e.AmbientazioniTab)
-                .WithRequired(e => e.CampagneTab)
-                .HasForeignKey(e => e.IDCampagneTab)
+            modelBuilder.Entity<AmbientazioniTab>()
+                .HasMany(e => e.CampagneTab)
+                .WithRequired(e => e.AmbientazioniTab)
+                .HasForeignKey(e => e.IDAmbientazioniTab)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CampagneTab>()
@@ -84,7 +84,7 @@ namespace Capstone_RPG_Manager.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UtentiTab>()
-                .HasMany(e => e.CampagneTab)
+                .HasMany(e => e.AmbientazioniTab)
                 .WithRequired(e => e.UtentiTab)
                 .HasForeignKey(e => e.IDUtentiTab)
                 .WillCascadeOnDelete(false);

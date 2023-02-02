@@ -50,8 +50,6 @@ namespace Capstone_RPG_Manager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.IDCampagneTab = new SelectList(db.CampagneTab, "ID", "Nome", ambientazioniTab.IDCampagneTab);
             return View(ambientazioniTab);
         }
 
@@ -66,7 +64,6 @@ namespace Capstone_RPG_Manager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDCampagneTab = new SelectList(db.CampagneTab, "ID", "Nome", ambientazioniTab.IDCampagneTab);
             return View(ambientazioniTab);
         }
 
@@ -80,7 +77,6 @@ namespace Capstone_RPG_Manager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDCampagneTab = new SelectList(db.CampagneTab, "ID", "Nome", ambientazioniTab.IDCampagneTab);
             return View(ambientazioniTab);
         }
 

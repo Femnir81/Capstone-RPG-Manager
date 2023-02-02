@@ -1,0 +1,66 @@
+﻿@model Capstone_RPG_Manager.Models.AmbientazioniTab
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AmbientazioniTab</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CampagneTab.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampagneTab.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Immagine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immagine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Privata)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Privata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cancellazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cancellazione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

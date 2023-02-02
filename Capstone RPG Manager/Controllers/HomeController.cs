@@ -26,5 +26,10 @@ namespace Capstone_RPG_Manager.Controllers
 
             return View();
         }
+
+        public ActionResult DMScreen()
+        {
+            return View();
+        }
     }
 }

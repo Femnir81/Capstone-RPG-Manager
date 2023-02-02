@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DBCreated : DbMigration
+    public partial class Prova1 : DbMigration
     {
         public override void Up()
         {
@@ -17,11 +17,11 @@
                         Immagine = c.String(),
                         Privata = c.Boolean(nullable: false),
                         Cancellazione = c.Boolean(nullable: false),
-                        IDCampagneTab = c.Int(nullable: false),
+                        IDUtentiTab = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.CampagneTab", t => t.IDCampagneTab)
-                .Index(t => t.IDCampagneTab);
+                .ForeignKey("dbo.UtentiTab", t => t.IDUtentiTab)
+                .Index(t => t.IDUtentiTab);
             
             CreateTable(
                 "dbo.CampagneTab",
@@ -32,11 +32,11 @@
                         Descrizione = c.String(),
                         Data = c.DateTime(storeType: "date"),
                         Cancellazione = c.Boolean(nullable: false),
-                        IDUtentiTab = c.Int(nullable: false),
+                        IDAmbientazioniTab = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.UtentiTab", t => t.IDUtentiTab)
-                .Index(t => t.IDUtentiTab);
+                .ForeignKey("dbo.AmbientazioniTab", t => t.IDAmbientazioniTab)
+                .Index(t => t.IDAmbientazioniTab);
             
             CreateTable(
                 "dbo.PermessiDMTab",
@@ -163,14 +163,14 @@
             DropForeignKey("dbo.RegioniTab", "IDAmbientazioniTab", "dbo.AmbientazioniTab");
             DropForeignKey("dbo.LuoghiTab", "IDRegioniTab", "dbo.RegioniTab");
             DropForeignKey("dbo.PuntiInteresseTab", "IDLuoghiTab", "dbo.LuoghiTab");
+            DropForeignKey("dbo.CampagneTab", "IDAmbientazioniTab", "dbo.AmbientazioniTab");
             DropForeignKey("dbo.SessioniTab", "IDCampagna", "dbo.CampagneTab");
             DropForeignKey("dbo.PermessiDMTab", "IDCampagnaTab", "dbo.CampagneTab");
             DropForeignKey("dbo.UtentiTab", "IDRuoliTab", "dbo.RuoliTab");
             DropForeignKey("dbo.PermessiDMTab", "IDUtentiTab", "dbo.UtentiTab");
-            DropForeignKey("dbo.CampagneTab", "IDUtentiTab", "dbo.UtentiTab");
             DropForeignKey("dbo.AmicizieTab", "IDUtentiTabB", "dbo.UtentiTab");
             DropForeignKey("dbo.AmicizieTab", "IDUtentiTabA", "dbo.UtentiTab");
-            DropForeignKey("dbo.AmbientazioniTab", "IDCampagneTab", "dbo.CampagneTab");
+            DropForeignKey("dbo.AmbientazioniTab", "IDUtentiTab", "dbo.UtentiTab");
             DropIndex("dbo.PuntiInteresseTab", new[] { "IDLuoghiTab" });
             DropIndex("dbo.LuoghiTab", new[] { "IDRegioniTab" });
             DropIndex("dbo.RegioniTab", new[] { "IDAmbientazioniTab" });
@@ -180,8 +180,8 @@
             DropIndex("dbo.UtentiTab", new[] { "IDRuoliTab" });
             DropIndex("dbo.PermessiDMTab", new[] { "IDCampagnaTab" });
             DropIndex("dbo.PermessiDMTab", new[] { "IDUtentiTab" });
-            DropIndex("dbo.CampagneTab", new[] { "IDUtentiTab" });
-            DropIndex("dbo.AmbientazioniTab", new[] { "IDCampagneTab" });
+            DropIndex("dbo.CampagneTab", new[] { "IDAmbientazioniTab" });
+            DropIndex("dbo.AmbientazioniTab", new[] { "IDUtentiTab" });
             DropTable("dbo.PuntiInteresseTab");
             DropTable("dbo.LuoghiTab");
             DropTable("dbo.RegioniTab");

@@ -7,13 +7,13 @@ namespace Capstone_RPG_Manager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ScambioAmbientazioneCampagna : IMigrationMetadata
+    public sealed partial class Prova1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ScambioAmbientazioneCampagna));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Prova1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202302021228489_ScambioAmbientazioneCampagna"; }
+            get { return "202302021338433_Prova1"; }
         }
         
         string IMigrationMetadata.Source

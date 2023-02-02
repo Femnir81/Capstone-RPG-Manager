@@ -84,10 +84,9 @@ C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG M
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\bin\it\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\bin\it\System.Web.WebPages.Razor.resources.dll
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.csproj.AssemblyReference.cache
-C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.DBCreated.resources
-C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.ScambioAmbientazioneCampagna.resources
-C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.csproj.GenerateResource.cache
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.csproj.CoreCompileInputs.cache
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.csproj.CopyComplete
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.dll
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.pdb
+C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.Prova1.resources
+C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.csproj.GenerateResource.cache

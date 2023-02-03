@@ -2,6 +2,7 @@ namespace Capstone_RPG_Manager.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -20,12 +21,16 @@ namespace Capstone_RPG_Manager.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name = "Setting")]
         public string Nome { get; set; }
 
+        [Display(Name = "Description")]
         public string Descrizione { get; set; }
 
+        [Display(Name = "Image")]
         public string Immagine { get; set; }
 
+        [Display(Name = "Private")]
         public bool Privata { get; set; }
 
         public bool Cancellazione { get; set; }
@@ -40,9 +45,10 @@ namespace Capstone_RPG_Manager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CampagneTab> CampagneTab { get; set; }
 
-        //public static List<AmbientazioniTab> GetListSettingsByDM(int id, ModelDBContext db)
-        //{
-        //    List<AmbientazioniTab> ListaAmbientazioni = db.AmbientazioniTab.Where(x=> x.i == id).ToList();
-        //}
+        public static List<AmbientazioniTab> GetListSettingsByDM(int id, ModelDBContext db)
+        {
+            List<AmbientazioniTab> ListaAmbientazioni = db.AmbientazioniTab.Where(x => x.IDUtentiTab == id && x.UtentiTab.DM == true && x.Cancellazione == false).ToList();
+            return ListaAmbientazioni;
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Capstone_RPG_Manager.Models.AmbientazioniTab>
+
+<div class="container overflow-y-auto" style="min-height:200px">
+    <p>
+        @Html.ActionLink("Create New Setting", "Create", null, new {@class="btn btn-outline-success"})
+    </p>
+    <table class="table">
+        <tr>
+            <th class="col-6">
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th class="col-3">
+                @Html.DisplayNameFor(model => model.Privata)
+            </th>
+            <th class="col-3">
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.Privata, new { @class = "form-check-input", disabled = true })
+                </td>
+                <td>
+                    <a href="~/AmbientazioniTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

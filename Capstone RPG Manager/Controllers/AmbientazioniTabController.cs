@@ -16,10 +16,11 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult Index()
         {
-            var ambientazioniTab = db.AmbientazioniTab.Include(a => a.CampagneTab);
+            var ambientazioniTab = db.AmbientazioniTab.Include(a => a.UtentiTab);
             return View(ambientazioniTab.ToList());
         }
 
+        // GET: AmbientazioniTab/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,20 +37,34 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.IDCampagneTab = new SelectList(db.CampagneTab, "ID", "Nome");
+            //ViewBag.IDUtentiTab = new SelectList(db.UtentiTab, "ID", "Username");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,Descrizione,Immagine,Privata,Cancellazione,IDCampagneTab")] AmbientazioniTab ambientazioniTab)
+        public ActionResult Create([Bind(Exclude = "Cancellazione,IDUtentiTab")] AmbientazioniTab ambientazioniTab, HttpPostedFileBase Img)
         {
             if (ModelState.IsValid)
             {
+                if (Img != null && Img.ContentLength <= 1000000)
+                {
+                    string ImgCode = DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + DateTime.Now.Millisecond.ToString();
+                    ambientazioniTab.Immagine = ImgCode;
+                    Img.SaveAs(Server.MapPath("~/Content/Images/DB/" + ambientazioniTab.Immagine));
+                }
+                else if (Img != null && Img.ContentLength > 1000000)
+                {
+                    ViewBag.ImgError = "The image must be less than 1Mb";
+                    return View(ambientazioniTab);
+                }
+                int id = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
+                ambientazioniTab.IDUtentiTab = id;
                 db.AmbientazioniTab.Add(ambientazioniTab);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DMScreen", "Home");
             }
+            //ViewBag.IDUtentiTab = new SelectList(db.UtentiTab, "ID", "Username", ambientazioniTab.IDUtentiTab);
             return View(ambientazioniTab);
         }
 
@@ -64,12 +79,13 @@ namespace Capstone_RPG_Manager.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IDUtentiTab = new SelectList(db.UtentiTab, "ID", "Username", ambientazioniTab.IDUtentiTab);
             return View(ambientazioniTab);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Descrizione,Immagine,Privata,Cancellazione,IDCampagneTab")] AmbientazioniTab ambientazioniTab)
+        public ActionResult Edit([Bind(Include = "ID,Nome,Descrizione,Immagine,Privata,Cancellazione,IDUtentiTab")] AmbientazioniTab ambientazioniTab)
         {
             if (ModelState.IsValid)
             {
@@ -77,6 +93,7 @@ namespace Capstone_RPG_Manager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.IDUtentiTab = new SelectList(db.UtentiTab, "ID", "Username", ambientazioniTab.IDUtentiTab);
             return View(ambientazioniTab);
         }
 
@@ -104,10 +121,10 @@ namespace Capstone_RPG_Manager.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult PWListSettingsByDM()
+        public ActionResult PWSettingsListByDM()
         {
-            
-            return PartialView("_PWListCampaignsByDM");
+            int id = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
+            return PartialView("_PWSettingsListByDM", AmbientazioniTab.GetListSettingsByDM(id, db));
         }
 
         protected override void Dispose(bool disposing)

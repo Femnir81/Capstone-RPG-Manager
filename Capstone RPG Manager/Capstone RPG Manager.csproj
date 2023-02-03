@@ -240,6 +240,7 @@
     <Content Include="Views\AmbientazioniTab\Details.cshtml" />
     <Content Include="Views\AmbientazioniTab\Edit.cshtml" />
     <Content Include="Views\AmbientazioniTab\Index.cshtml" />
+    <Content Include="Views\AmbientazioniTab\_PWSettingsListByDM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

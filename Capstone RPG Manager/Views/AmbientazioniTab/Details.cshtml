@@ -4,63 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="text-center my-5">@Model.Nome @if (Model.Privata)
+{
+     <i class="fa-solid fa-unlock-keyhole mx-2"></i>  
+}</h2>
 
-<div>
-    <h4>AmbientazioniTab</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UtentiTab.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UtentiTab.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descrizione)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Immagine)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Immagine)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Privata)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Privata)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cancellazione)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cancellazione)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+<p class="d-flex justify-content-end">
+    <a href="~/AmbientazioniTab/PrivateOnDetails/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
+    <a href="~/AmbientazioniTab/Edit/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a href="~/AmbientazioniTab/Delete/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
 </p>
+
+<div class="container my-5">
+    <div class="text-center">
+        <img src="~/Content/Images/DB/@Model.Immagine" alt="@Model.Nome" style="max-width:100%"/>
+    </div>
+        <div class="my-5">
+            <p class="fw-bold">@Html.DisplayNameFor(model => model.Descrizione)</p>
+            <p>@Html.DisplayFor(model => model.Descrizione)</p>
+        </div>
+</div>

@@ -4,83 +4,79 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="text-center my-5">Edit Setting</h2>
 
+<div class="container d-flex flex-column align-items-center my-5">
+    @using (Html.BeginForm("Edit", "AmbientazioniTab", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>AmbientazioniTab</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+        <div class="form-horizontal d-flex flex-column">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            <div class="form-group my-2">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
+            <div class="form-group my-2">
+                @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Immagine, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Immagine, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Immagine, "", new { @class = "text-danger" })
+            <div class="form-group my-2">
+                @Html.LabelFor(model => model.Immagine, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.TextBox("Img", null, new { @class = "form-control", type = "file" })
+                    @Html.ValidationMessageFor(model => model.Immagine, "", new { @class = "text-danger" })
+                    <p class="text-danger">@ViewBag.ImgError</p>
+                </div>
+                <div>
+                    <p class="mb-0">You can click on image to zoom</p>
+                    <img src="~/Content/Images/DB/@Model.Immagine" style="width:50px;"/>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Privata, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Privata)
-                    @Html.ValidationMessageFor(model => model.Privata, "", new { @class = "text-danger" })
+            <div class="form-group my-2">
+                @Html.Label("Make your Setting private?", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(model => model.Privata, new { @class = "form-check-input" })
+                        @Html.ValidationMessageFor(model => model.Privata, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group my-3">
+                <div>
+                    <input type="submit" value="Edit" class="btn btn-outline-success" />
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cancellazione, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Cancellazione)
-                    @Html.ValidationMessageFor(model => model.Cancellazione, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDUtentiTab, "IDUtentiTab", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDUtentiTab", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDUtentiTab, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script type="text/javascript">
+    /*$(document).ready(function () { $("img").click(function () { this.requestFullscreen() }) });*/
+    $(document).ready(function () {
+        $("img").click(function () {
+            if ($(this).css("width") == "50px") {
+                $(this).animate({ width: "100%" }, 500);
+            }
+            else {
+                $(this).animate({ width: "50px" }, 500);
+            }
+        });
+    });
+</script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

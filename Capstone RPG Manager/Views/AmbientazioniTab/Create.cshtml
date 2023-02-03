@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2 class="text-center my-5">Create a Setting</h2>
+<h2 class="text-center my-5">Create Setting</h2>
 
 <div class="container d-flex flex-column align-items-center my-5">
     @using (Html.BeginForm("Create", "AmbientazioniTab", FormMethod.Post, new {enctype = "multipart/form-data"}))
@@ -56,9 +56,6 @@
         </div>
     }
 </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

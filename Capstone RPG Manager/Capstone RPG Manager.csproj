@@ -280,6 +280,7 @@
     <Content Include="Views\SessioniTab\Edit.cshtml" />
     <Content Include="Views\SessioniTab\Index.cshtml" />
     <Content Include="Views\SessioniTab\_PWSessionsListByCampaign.cshtml" />
+    <Content Include="Views\UtentiTab\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

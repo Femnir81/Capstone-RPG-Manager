@@ -21,7 +21,6 @@ namespace Capstone_RPG_Manager.Controllers
             return View(utentiTab.ToList());
         }
 
-        // GET: UtentiTab/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -162,6 +161,34 @@ namespace Capstone_RPG_Manager.Controllers
             //ViewBag.IDRuoliTab = new SelectList(db.RuoliTab, "ID", "Ruolo", utentiTab.IDRuoliTab);
             return View(utentiTab);
         }
+
+        public ActionResult UserProfile()
+        {
+            int idUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
+            UtentiTab user = db.UtentiTab.Find(idUser);
+            return View(user);
+        }
+
+        public ActionResult DMStatus (int id)
+        {
+            UtentiTab utentiTab = db.UtentiTab.Find(id);
+            if (utentiTab.DM)
+            {
+                utentiTab.DM = false;
+            }
+            else
+            {
+                utentiTab.DM = true;
+            }
+            db.Entry(utentiTab).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("UserProfile", utentiTab);
+        }
+
+        //public ActionResult SearchFriends()
+        //{
+
+        //}
 
         protected override void Dispose(bool disposing)
         {

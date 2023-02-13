@@ -1,0 +1,27 @@
+﻿@model Capstone_RPG_Manager.Models.UtentiTab
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+<h2 class="text-center my-5">
+    @Model.Username @if (Model.DM)
+    {
+        <span class="fw-bold">DM</span>
+    }
+    else
+    {
+        <span class="fw-light">Player</span>
+    }
+    <a href="~/UtentiTab/DMStatus/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set DM/Player" class="me-2 fs-4"><i class="fa-solid fa-image-portrait"></i></a>
+</h2>
+
+<div class="container my-5">
+    <div>
+        <p class="fw-bold">@Html.DisplayNameFor(model => model.Password)</p>
+        <p>@Html.DisplayFor(model => model.Password)</p>
+    </div>
+    <div>
+        <p class="fw-bold">@Html.DisplayNameFor(model => model.Email)</p>
+        <p>@Html.DisplayFor(model => model.Email)</p>
+    </div>
+</div>

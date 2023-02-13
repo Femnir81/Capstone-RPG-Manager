@@ -19,6 +19,7 @@ namespace Capstone_RPG_Manager.Models
             AmicizieTab1 = new HashSet<AmicizieTab>();
             AmbientazioniTab = new HashSet<AmbientazioniTab>();
             PermessiDMTab = new HashSet<PermessiDMTab>();
+            PermessiDMTab1 = new HashSet<PermessiDMTab>();
         }
 
         public int ID { get; set; }
@@ -47,6 +48,9 @@ namespace Capstone_RPG_Manager.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PermessiDMTab> PermessiDMTab { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PermessiDMTab> PermessiDMTab1 { get; set; }
 
         public virtual RuoliTab RuoliTab { get; set; }
 

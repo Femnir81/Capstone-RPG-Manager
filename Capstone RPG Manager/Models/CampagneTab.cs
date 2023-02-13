@@ -13,7 +13,6 @@ namespace Capstone_RPG_Manager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CampagneTab()
         {
-            PermessiDMTab = new HashSet<PermessiDMTab>();
             SessioniTab = new HashSet<SessioniTab>();
         }
 
@@ -37,9 +36,6 @@ namespace Capstone_RPG_Manager.Models
         public int IDAmbientazioniTab { get; set; }
 
         public virtual AmbientazioniTab AmbientazioniTab { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PermessiDMTab> PermessiDMTab { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SessioniTab> SessioniTab { get; set; }

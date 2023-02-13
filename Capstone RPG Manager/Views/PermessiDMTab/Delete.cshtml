@@ -1,0 +1,64 @@
+﻿@model Capstone_RPG_Manager.Models.PermessiDMTab
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PermessiDMTab</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AmbientazioniTab.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmbientazioniTab.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtentiTab.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtentiTab.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtentiTab1.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtentiTab1.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Permesso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Permesso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cancellazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cancellazione)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

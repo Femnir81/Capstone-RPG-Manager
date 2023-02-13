@@ -21,6 +21,7 @@ namespace Capstone_RPG_Manager.Models
         {
             RegioniTab = new HashSet<RegioniTab>();
             CampagneTab = new HashSet<CampagneTab>();
+            PermessiDMTab = new HashSet<PermessiDMTab>();
         }
 
         public int ID { get; set; }
@@ -49,6 +50,9 @@ namespace Capstone_RPG_Manager.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CampagneTab> CampagneTab { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PermessiDMTab> PermessiDMTab { get; set; }
 
         public static List<AmbientazioniTab> GetListSettingsByDM(int id, ModelDBContext db)
         {

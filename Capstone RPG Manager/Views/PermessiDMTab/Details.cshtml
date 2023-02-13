@@ -1,0 +1,58 @@
+﻿@model Capstone_RPG_Manager.Models.PermessiDMTab
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PermessiDMTab</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AmbientazioniTab.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmbientazioniTab.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtentiTab.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtentiTab.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtentiTab1.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtentiTab1.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Permesso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Permesso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cancellazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cancellazione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

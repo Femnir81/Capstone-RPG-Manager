@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CampagneTabController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuoghiTabController.cs" />
+    <Compile Include="Controllers\PermessiDMTabController.cs" />
     <Compile Include="Controllers\PuntiInteresseTabController.cs" />
     <Compile Include="Controllers\RegioniTabController.cs" />
     <Compile Include="Controllers\SessioniTabController.cs" />
@@ -151,6 +152,18 @@
     <Compile Include="Migrations\202302101445114_TitleInSessionRequired.cs" />
     <Compile Include="Migrations\202302101445114_TitleInSessionRequired.designer.cs">
       <DependentUpon>202302101445114_TitleInSessionRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302131434555_PermessiFromCampagneToAmbientazioni.cs" />
+    <Compile Include="Migrations\202302131434555_PermessiFromCampagneToAmbientazioni.designer.cs">
+      <DependentUpon>202302131434555_PermessiFromCampagneToAmbientazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302131758108_AddMessaggioInAmicizieTab.cs" />
+    <Compile Include="Migrations\202302131758108_AddMessaggioInAmicizieTab.designer.cs">
+      <DependentUpon>202302131758108_AddMessaggioInAmicizieTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302131906244_permessiupdate2.cs" />
+    <Compile Include="Migrations\202302131906244_permessiupdate2.designer.cs">
+      <DependentUpon>202302131906244_permessiupdate2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmbientazioniTab.cs" />
@@ -281,6 +294,12 @@
     <Content Include="Views\SessioniTab\Index.cshtml" />
     <Content Include="Views\SessioniTab\_PWSessionsListByCampaign.cshtml" />
     <Content Include="Views\UtentiTab\UserProfile.cshtml" />
+    <Content Include="Views\UtentiTab\_PWSearchingList.cshtml" />
+    <Content Include="Views\PermessiDMTab\Create.cshtml" />
+    <Content Include="Views\PermessiDMTab\Delete.cshtml" />
+    <Content Include="Views\PermessiDMTab\Details.cshtml" />
+    <Content Include="Views\PermessiDMTab\Edit.cshtml" />
+    <Content Include="Views\PermessiDMTab\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,6 +319,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302101445114_TitleInSessionRequired.resx">
       <DependentUpon>202302101445114_TitleInSessionRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302131434555_PermessiFromCampagneToAmbientazioni.resx">
+      <DependentUpon>202302131434555_PermessiFromCampagneToAmbientazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302131758108_AddMessaggioInAmicizieTab.resx">
+      <DependentUpon>202302131758108_AddMessaggioInAmicizieTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302131906244_permessiupdate2.resx">
+      <DependentUpon>202302131906244_permessiupdate2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

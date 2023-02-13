@@ -11,6 +11,8 @@ namespace Capstone_RPG_Manager.Models
     {
         public int ID { get; set; }
 
+        public string Messaggio { get; set; }
+
         public bool Cancellazione { get; set; }
 
         public int IDUtentiTabA { get; set; }

@@ -24,4 +24,9 @@
         <p class="fw-bold">@Html.DisplayNameFor(model => model.Email)</p>
         <p>@Html.DisplayFor(model => model.Email)</p>
     </div>
+    <div class="row">
+        <div class="col-md-6 p-0">
+            @{ Html.RenderAction("PWSearchingList", "UtentiTab");}
+        </div>
+    </div>
 </div>

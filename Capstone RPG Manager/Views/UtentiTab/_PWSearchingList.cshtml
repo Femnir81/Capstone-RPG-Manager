@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Capstone_RPG_Manager.Models.UtentiTab>
+
+<div class="container overflow-y-auto m-0 p-0" style="min-height:200px">
+    @using (Html.BeginForm("PWSearchingList", "UtentiTab", FormMethod.Post))
+    {
+        <p class="d-flex mt-5">
+            <input type="text" name="TextUser" class="w-50 form-control me-2" />
+            <input type="submit" value="Search User" class="btn btn-primary w-auto" />
+        </p>
+    }
+
+    @if (Model == null)
+    {
+        <div></div>
+    }
+    else
+    {
+        <table class="table m-0 p-0" style="width: 95%">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        <a href="~/PermessiDMTab/InvitationRequest/@item.ID" class="btn btn-sm btn-outline-primary me-2">Click here to invite</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>

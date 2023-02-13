@@ -185,10 +185,26 @@ namespace Capstone_RPG_Manager.Controllers
             return RedirectToAction("UserProfile", utentiTab);
         }
 
-        //public ActionResult SearchFriends()
-        //{
+        public ActionResult PWSearchingList()
+        {
+            List<UtentiTab> ListaUtenti = (List<UtentiTab>)TempData["ListaUtenti"];
+            return PartialView("_PWSearchingList", ListaUtenti);
+        }
 
-        //}
+        [HttpPost]
+        public ActionResult PWSearchingList(string TextUser)
+        {
+            if (string.IsNullOrEmpty(TextUser))
+            {
+                TempData["ListaUtenti"] = null;
+            }
+            else 
+            {
+                List<UtentiTab> ListaUtenti = db.UtentiTab.Where(x => x.Username.Contains(TextUser)).ToList();
+                TempData["ListaUtenti"] = ListaUtenti;
+            }
+            return RedirectToAction("UserProfile");
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -15,12 +15,16 @@ namespace Capstone_RPG_Manager.Models
 
         public bool Cancellazione { get; set; }
 
-        public int IDUtentiTab { get; set; }
+        public int IDUtentiTabA { get; set; }
 
-        public int IDCampagnaTab { get; set; }
+        public int IDUtentiTabB { get; set; }
 
-        public virtual CampagneTab CampagneTab { get; set; }
+        public int IDAmbientazioniTab { get; set; }
+
+        public virtual AmbientazioniTab AmbientazioniTab { get; set; }
 
         public virtual UtentiTab UtentiTab { get; set; }
+
+        public virtual UtentiTab UtentiTab1 { get; set; }
     }
 }

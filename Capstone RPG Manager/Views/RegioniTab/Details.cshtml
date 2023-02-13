@@ -1,0 +1,45 @@
+﻿@model Capstone_RPG_Manager.Models.RegioniTab
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center my-5">
+    @Model.Nome @if (Model.Privata)
+    {
+        <i class="fa-solid fa-lock mx-2"></i>
+    }
+    else
+    {
+        <i class="fa-solid fa-unlock mx-2"></i>
+    }
+</h2>
+
+<p class="d-flex justify-content-end">
+    <a href="~/RegioniTab/PrivateOnDetails/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
+    <a href="~/RegioniTab/Edit/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a href="~/RegioniTab/Delete/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+</p>
+
+<div class="container my-5">
+    @{
+        if (Model.Immagine != null)
+        {
+            <div class="text-center">
+                <img src="~/Content/Images/DB/@Model.Immagine" alt="@Model.Nome" style="max-width:100%" />
+            </div>
+        }
+    }
+    <div class="my-5">
+        <p class="fw-bold">@Html.DisplayNameFor(model => model.Descrizione)</p>
+        <p>@Html.DisplayFor(model => model.Descrizione)</p>
+    </div>
+    <div class="row my-5 p-0">
+        <div class="col-md-6 p-0">
+            @{ Html.RenderAction("PWAreasListByRegion", "LuoghiTab");}
+        </div>
+        <div class="col-md-6 p-0">
+            @{ Html.RenderAction("PWCitiesListByRegion", "LuoghiTab");}
+        </div>
+    </div>
+</div>

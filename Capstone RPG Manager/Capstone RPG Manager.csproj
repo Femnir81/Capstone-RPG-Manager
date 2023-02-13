@@ -130,7 +130,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AmbientazioniTabController.cs" />
+    <Compile Include="Controllers\CampagneTabController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LuoghiTabController.cs" />
+    <Compile Include="Controllers\PuntiInteresseTabController.cs" />
+    <Compile Include="Controllers\RegioniTabController.cs" />
+    <Compile Include="Controllers\SessioniTabController.cs" />
     <Compile Include="Controllers\UtentiTabController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -138,6 +143,14 @@
     <Compile Include="Migrations\202302021338433_Prova1.cs" />
     <Compile Include="Migrations\202302021338433_Prova1.designer.cs">
       <DependentUpon>202302021338433_Prova1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302101212588_TitleInSession.cs" />
+    <Compile Include="Migrations\202302101212588_TitleInSession.designer.cs">
+      <DependentUpon>202302101212588_TitleInSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302101445114_TitleInSessionRequired.cs" />
+    <Compile Include="Migrations\202302101445114_TitleInSessionRequired.designer.cs">
+      <DependentUpon>202302101445114_TitleInSessionRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmbientazioniTab.cs" />
@@ -236,11 +249,37 @@
     <Content Include="Views\UtentiTab\Register.cshtml" />
     <Content Include="Views\Home\DMScreen.cshtml" />
     <Content Include="Views\AmbientazioniTab\Create.cshtml" />
-    <Content Include="Views\AmbientazioniTab\Delete.cshtml" />
     <Content Include="Views\AmbientazioniTab\Details.cshtml" />
     <Content Include="Views\AmbientazioniTab\Edit.cshtml" />
     <Content Include="Views\AmbientazioniTab\Index.cshtml" />
     <Content Include="Views\AmbientazioniTab\_PWSettingsListByDM.cshtml" />
+    <Content Include="Views\CampagneTab\Create.cshtml" />
+    <Content Include="Views\CampagneTab\Details.cshtml" />
+    <Content Include="Views\CampagneTab\Edit.cshtml" />
+    <Content Include="Views\CampagneTab\Index.cshtml" />
+    <Content Include="Views\CampagneTab\_PWCampaignsListByDM.cshtml" />
+    <Content Include="Views\CampagneTab\_PWCampaignsListBySetting.cshtml" />
+    <Content Include="Views\RegioniTab\Create.cshtml" />
+    <Content Include="Views\RegioniTab\Details.cshtml" />
+    <Content Include="Views\RegioniTab\Edit.cshtml" />
+    <Content Include="Views\RegioniTab\Index.cshtml" />
+    <Content Include="Views\RegioniTab\_PWRegionsListBySetting.cshtml" />
+    <Content Include="Views\LuoghiTab\Create.cshtml" />
+    <Content Include="Views\LuoghiTab\Details.cshtml" />
+    <Content Include="Views\LuoghiTab\Edit.cshtml" />
+    <Content Include="Views\LuoghiTab\Index.cshtml" />
+    <Content Include="Views\LuoghiTab\_PWAreasListByRegion.cshtml" />
+    <Content Include="Views\LuoghiTab\_PWCitiesListByRegion.cshtml" />
+    <Content Include="Views\PuntiInteresseTab\Create.cshtml" />
+    <Content Include="Views\PuntiInteresseTab\Details.cshtml" />
+    <Content Include="Views\PuntiInteresseTab\Edit.cshtml" />
+    <Content Include="Views\PuntiInteresseTab\Index.cshtml" />
+    <Content Include="Views\PuntiInteresseTab\_PWPointsOfInterestListByArea.cshtml" />
+    <Content Include="Views\SessioniTab\Create.cshtml" />
+    <Content Include="Views\SessioniTab\Details.cshtml" />
+    <Content Include="Views\SessioniTab\Edit.cshtml" />
+    <Content Include="Views\SessioniTab\Index.cshtml" />
+    <Content Include="Views\SessioniTab\_PWSessionsListByCampaign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -254,6 +293,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202302021338433_Prova1.resx">
       <DependentUpon>202302021338433_Prova1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302101212588_TitleInSession.resx">
+      <DependentUpon>202302101212588_TitleInSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302101445114_TitleInSessionRequired.resx">
+      <DependentUpon>202302101445114_TitleInSessionRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,31 @@
+﻿@model Capstone_RPG_Manager.Models.CampagneTab
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center my-5">@Model.Nome</h2>
+
+<p class="d-flex justify-content-end">
+    <a href="~/CampagneTab/Edit/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a href="~/CampagneTab/Delete/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+</p>
+
+<div class="container my-5">
+    <div>
+        <p class="fw-bold">Starting Date</p>
+        <p>@Html.DisplayFor(model => model.Data)</p>
+    </div>
+    <div class="my-5">
+        <p class="fw-bold">@Html.DisplayNameFor(model => model.Descrizione)</p>
+        <p>@Html.DisplayFor(model => model.Descrizione)</p>
+    </div>
+    <div class="row my-5 p-0">
+        <div class="col-md-6 p-0">
+            @{ Html.RenderAction("PWSessionsListByCampaign", "SessioniTab");}
+        </div>
+        @*<div class="col-md-6 p-0">
+            @{ Html.RenderAction("PWCampaignsListBySetting", "CampagneTab");}
+        </div>*@
+    </div>
+</div>

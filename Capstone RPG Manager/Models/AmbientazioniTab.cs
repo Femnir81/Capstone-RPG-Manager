@@ -5,8 +5,13 @@ namespace Capstone_RPG_Manager.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
     using System.Data.Entity.Spatial;
+    using System.Data.SqlTypes;
     using System.Linq;
+    using System.Runtime.InteropServices.ComTypes;
+    using System.Web;
+    using System.Web.Mvc;
 
     [Table("AmbientazioniTab")]
     public partial class AmbientazioniTab
@@ -49,6 +54,149 @@ namespace Capstone_RPG_Manager.Models
         {
             List<AmbientazioniTab> ListaAmbientazioni = db.AmbientazioniTab.Where(x => x.IDUtentiTab == id && x.UtentiTab.DM == true && x.Cancellazione == false).ToList();
             return ListaAmbientazioni;
+        }
+
+        public static void Delete(int id, ModelDBContext db, AmbientazioniTab ambientazioniTab)
+        {
+            ambientazioniTab.Cancellazione = true;
+            if (ambientazioniTab.Immagine != null)
+            {
+                System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/DB/" + ambientazioniTab.Immagine));
+                ambientazioniTab.Immagine = null;
+            }
+            List<RegioniTab> ListaRegioni = db.RegioniTab.Where(x => x.IDAmbientazioniTab == id && x.Cancellazione == false).ToList();
+            if (ListaRegioni != null)
+            {
+                List<int> IDListaRegioni = new List<int>();
+                foreach (RegioniTab item in ListaRegioni)
+                {
+                    item.Cancellazione = true;
+                    if (item.Immagine != null)
+                    {
+                        System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/DB/" + item.Immagine));
+                        item.Immagine = null;
+                    }
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                    IDListaRegioni.Add(item.ID);
+                }
+                List<LuoghiTab> ListaLuoghi = db.LuoghiTab.Where(x => IDListaRegioni.Contains(x.IDRegioniTab) && x.Cancellazione == false).ToList();
+                if (ListaLuoghi != null)
+                {
+                    List<int> IDListaLuoghi = new List<int>();
+                    foreach (LuoghiTab item in ListaLuoghi)
+                    {
+                        item.Cancellazione = true;
+                        if (item.Immagine != null)
+                        {
+                            System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/DB/" + item.Immagine));
+                            item.Immagine = null;
+                        }
+                        db.Entry(item).State = EntityState.Modified;
+                        db.SaveChanges();
+                        IDListaLuoghi.Add(item.ID);
+                    }
+                    List<PuntiInteresseTab> ListaPuntiInteresse = db.PuntiInteresseTab.Where(x => IDListaLuoghi.Contains(x.IDLuoghiTab) && x.Cancellazione == false).ToList();
+                    if (ListaPuntiInteresse != null)
+                    {
+                        foreach (PuntiInteresseTab item in ListaPuntiInteresse)
+                        {
+                            item.Cancellazione = true;
+                            if (item.Immagine != null)
+                            {
+                                System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/DB/" + item.Immagine));
+                                item.Immagine = null;
+                            }
+                            db.Entry(item).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            db.Entry(ambientazioniTab).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public static void GetPrivateOnPW(int id, ModelDBContext db, AmbientazioniTab ambientazioniTab)
+        {
+            if (ambientazioniTab.Privata)
+            {
+                ambientazioniTab.Privata = false;
+                List<RegioniTab> ListaRegioni = db.RegioniTab.Where(x => x.IDAmbientazioniTab == id && x.Cancellazione == false).ToList();
+                if (ListaRegioni != null)
+                {
+                    List<int> IDListaRegioni = new List<int>();
+                    foreach (RegioniTab item in ListaRegioni)
+                    {
+                        item.Privata = false;
+                        db.Entry(item).State = EntityState.Modified;
+                        db.SaveChanges();
+                        IDListaRegioni.Add(item.ID);
+                    }
+                    List<LuoghiTab> ListaLuoghi = db.LuoghiTab.Where(x => IDListaRegioni.Contains(x.IDRegioniTab) && x.Cancellazione == false).ToList();
+                    if (ListaLuoghi != null)
+                    {
+                        List<int> IDListaLuoghi = new List<int>();
+                        foreach (LuoghiTab item in ListaLuoghi)
+                        {
+                            item.Privata = false;
+                            db.Entry(item).State = EntityState.Modified;
+                            db.SaveChanges();
+                            IDListaLuoghi.Add(item.ID);
+                        }
+                        List<PuntiInteresseTab> ListaPuntiInteresse = db.PuntiInteresseTab.Where(x => IDListaLuoghi.Contains(x.IDLuoghiTab) && x.Cancellazione == false).ToList();
+                        if (ListaPuntiInteresse != null)
+                        {
+                            foreach (PuntiInteresseTab item in ListaPuntiInteresse)
+                            {
+                                item.Privata = false;
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                ambientazioniTab.Privata = true;
+                List<RegioniTab> ListaRegioni = db.RegioniTab.Where(x => x.IDAmbientazioniTab == id && x.Cancellazione == false).ToList();
+                if (ListaRegioni != null)
+                {
+                    List<int> IDListaRegioni = new List<int>();
+                    foreach (RegioniTab item in ListaRegioni)
+                    {
+                        item.Privata = true;
+                        db.Entry(item).State = EntityState.Modified;
+                        db.SaveChanges();
+                        IDListaRegioni.Add(item.ID);
+                    }
+                    List<LuoghiTab> ListaLuoghi = db.LuoghiTab.Where(x => IDListaRegioni.Contains(x.IDRegioniTab) && x.Cancellazione == false).ToList();
+                    if (ListaLuoghi != null)
+                    {
+                        List<int> IDListaLuoghi = new List<int>();
+                        foreach (LuoghiTab item in ListaLuoghi)
+                        {
+                            item.Privata = true;
+                            db.Entry(item).State = EntityState.Modified;
+                            db.SaveChanges();
+                            IDListaLuoghi.Add(item.ID);
+                        }
+                        List<PuntiInteresseTab> ListaPuntiInteresse = db.PuntiInteresseTab.Where(x => IDListaLuoghi.Contains(x.IDLuoghiTab) && x.Cancellazione == false).ToList();
+                        if (ListaPuntiInteresse != null)
+                        {
+                            foreach (PuntiInteresseTab item in ListaPuntiInteresse)
+                            {
+                                item.Privata = true;
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+            db.Entry(ambientazioniTab).State = EntityState.Modified;
+            db.SaveChanges();
         }
     }
 }

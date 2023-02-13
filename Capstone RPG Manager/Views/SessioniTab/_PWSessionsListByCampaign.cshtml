@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Capstone_RPG_Manager.Models.SessioniTab>
+
+<div class="container overflow-y-auto m-0 p-0" style="min-height:200px">
+    <p>
+        @Html.ActionLink("Create New Session", "Create", null , new { @class = "btn btn-outline-success" })
+    </p>
+    <table class="table m-0 p-0" style="width: 95%">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titolo)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    <a href="~/SessioniTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Titolo)</a>
+                </td>
+                <td>
+                    <a href="~/SessioniTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="~/SessioniTab/Delete/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

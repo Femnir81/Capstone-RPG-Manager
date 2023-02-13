@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Capstone_RPG_Manager.Models.RegioniTab>
+
+<div class="container overflow-y-auto m-0 p-0">
+    <p>
+        @Html.ActionLink("Create New Region", "Create", null, new { @class = "btn btn-outline-success" })
+    </p>
+    <table class="table m-0 p-0" style="width: 95%">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Privata)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="~/RegioniTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
+                </td>
+                @{
+                    if (item.Privata == true)
+                    {
+                        <td><i class="fa-solid fa-lock"></i></td>
+                    }
+                    else
+                    {
+                        <td><i class="fa-solid fa-unlock"></i></td>
+                    }
+                }
+                <td>
+                    <a href="~/RegioniTab/PrivateOnPW/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
+                    <a href="~/RegioniTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="~/RegioniTab/Delete/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

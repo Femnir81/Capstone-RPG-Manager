@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<Capstone_RPG_Manager.Models.AmbientazioniTab>
 
-<div class="container overflow-y-auto" style="min-height:200px">
+<div class="container overflow-y-auto m-0 p-0" style="min-height:200px">
     <p>
         @Html.ActionLink("Create New Setting", "Create", null, new {@class="btn btn-outline-success"})
     </p>
-    <table class="table">
+    <table class="table m-0 p-0" style="width: 95%">
         <tr>
-            <th class="col-6">
+            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th class="col-3">
+            <th>
                 @Html.DisplayNameFor(model => model.Privata)
             </th>
-            <th class="col-3">
+            <th>
                 Actions
             </th>
         </tr>
@@ -23,9 +23,16 @@
                 <td>
                     <a href="~/AmbientazioniTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                 </td>
-                <td>
-                    @Html.CheckBoxFor(modelItem => item.Privata, new { @class = "form-check-input", disabled = true })
-                </td>
+                @{
+                    if (item.Privata == true)
+                    {
+                        <td><i class="fa-solid fa-lock"></i></td>
+                    }
+                    else
+                    {
+                        <td><i class="fa-solid fa-unlock"></i></td>
+                    }
+                }
                 <td>
                     <a href="~/AmbientazioniTab/PrivateOnPW/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
                     <a href="~/AmbientazioniTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>

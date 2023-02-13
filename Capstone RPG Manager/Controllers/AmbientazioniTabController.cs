@@ -22,7 +22,6 @@ namespace Capstone_RPG_Manager.Controllers
             return View(ambientazioniTab.ToList());
         }
 
-        // GET: AmbientazioniTab/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,6 +33,7 @@ namespace Capstone_RPG_Manager.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["IDSettingForRegion"] = id;
             return View(ambientazioniTab);
         }
 
@@ -98,7 +98,10 @@ namespace Capstone_RPG_Manager.Controllers
                 AmbientazioniTab AmbientazioneInDB = db.AmbientazioniTab.Find(ambientazioniTab.ID);
                 if (Img != null && Img.ContentLength <= 1000000)
                 {
-                    System.IO.File.Delete(Server.MapPath("~/Content/Images/DB/" + AmbientazioneInDB.Immagine));
+                    if (AmbientazioneInDB.Immagine != null)
+                    {
+                        System.IO.File.Delete(Server.MapPath("~/Content/Images/DB/" + AmbientazioneInDB.Immagine));
+                    }
                     int lastIndex = Img.FileName.LastIndexOf('.');
                     //var name = Img.FileName.Substring(0, lastIndex);
                     string ext = Img.FileName.Substring(lastIndex + 1);
@@ -116,7 +119,7 @@ namespace Capstone_RPG_Manager.Controllers
                 AmbientazioneInDB.Descrizione = ambientazioniTab.Descrizione;
                 AmbientazioneInDB.Privata = ambientazioniTab.Privata;
                 int id = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
-                AmbientazioneInDB.ID = id;
+                AmbientazioneInDB.IDUtentiTab = id;
                 db.Entry(AmbientazioneInDB).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("DMScreen", "Home");
@@ -125,12 +128,10 @@ namespace Capstone_RPG_Manager.Controllers
             return View(ambientazioniTab);
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             AmbientazioniTab ambientazioniTab = db.AmbientazioniTab.Find(id);
-            ambientazioniTab.Cancellazione = true;
-            db.Entry(ambientazioniTab).State = EntityState.Modified;
-            db.SaveChanges();
+            AmbientazioniTab.Delete(id, db, ambientazioniTab);
             return RedirectToAction("DMScreen", "Home");
         }
 
@@ -143,32 +144,14 @@ namespace Capstone_RPG_Manager.Controllers
         public ActionResult PrivateOnPW(int id)
         {
             AmbientazioniTab ambientazioniTab = db.AmbientazioniTab.Find(id);
-            if (ambientazioniTab.Privata)
-            {
-                ambientazioniTab.Privata = false;               
-            }
-            else
-            {
-                ambientazioniTab.Privata = true;
-            }
-            db.Entry(ambientazioniTab).State = EntityState.Modified;
-            db.SaveChanges();
+            AmbientazioniTab.GetPrivateOnPW(id, db, ambientazioniTab);
             return RedirectToAction("DMScreen", "Home");
         }
 
         public ActionResult PrivateOnDetails(int id)
         {
             AmbientazioniTab ambientazioniTab = db.AmbientazioniTab.Find(id);
-            if (ambientazioniTab.Privata)
-            {
-                ambientazioniTab.Privata = false;
-            }
-            else
-            {
-                ambientazioniTab.Privata = true;
-            }
-            db.Entry(ambientazioniTab).State = EntityState.Modified;
-            db.SaveChanges();
+            AmbientazioniTab.GetPrivateOnPW(id, db, ambientazioniTab);
             return RedirectToAction("Details", ambientazioniTab);
         }
 

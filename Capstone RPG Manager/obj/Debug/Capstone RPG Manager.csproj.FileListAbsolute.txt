@@ -90,3 +90,5 @@ C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG M
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.pdb
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.Prova1.resources
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone RPG Manager.csproj.GenerateResource.cache
+C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.TitleInSession.resources
+C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.TitleInSessionRequired.resources

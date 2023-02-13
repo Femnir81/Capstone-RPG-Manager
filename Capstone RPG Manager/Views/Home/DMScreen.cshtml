@@ -7,12 +7,12 @@
 <h2 class="text-center my-5">Dungeon Master Screen</h2>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row m-0 p-0">
+        <div class="col-md-6 p-0">
             @{ Html.RenderAction("PWSettingsListByDM", "AmbientazioniTab");}
         </div>
-        <div class="col-md-6">
-            aaaaa
+        <div class="col-md-6 p-0">
+            @{ Html.RenderAction("PWCampaignsListByDM", "CampagneTab");}
         </div>
     </div>
 </div>

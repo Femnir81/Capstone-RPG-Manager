@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Capstone_RPG_Manager.Models.AmicizieTab>
+
+<div class="container h-100 m-0 px-2 pt-2 pb-4">
+@foreach (var item in Model) {
+    <div class="my-2">
+        <p class="fs-6 fw-bold ms-2 my-0 p-0">@Html.DisplayFor(modelItem => item.UtentiTab.Username)</p>
+        @{ 
+            ViewBag.Messaggio = MvcHtmlString.Create(item.Messaggio);
+        }
+        <p class="rounded-4 mx-1 my-0 p-2 bgMessage">@ViewBag.Messaggio</p>
+    <p class="float-end mx-1 my-1 p-0" style="font-size: 0.8rem">@Html.DisplayFor(modelItem => item.OraMessaggio)</p>
+    </div>
+}
+</div>

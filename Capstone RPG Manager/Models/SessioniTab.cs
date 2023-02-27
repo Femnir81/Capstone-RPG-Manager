@@ -38,6 +38,22 @@ namespace Capstone_RPG_Manager.Models
             return ListaSessioni;
         }
 
+        public static List<SessioniTab> GetListSessionsAllowedByCampaign(int id, ModelDBContext db, int idLoggedUser)
+        {
+            CampagneTab campagneTab = CampagneTab.GetListCampaignsAllowedByDM(idLoggedUser, db).Where(x => x.ID == id).FirstOrDefault();
+            if (campagneTab != null)
+            {
+                List<SessioniTab> ListaSessioni = db.SessioniTab.Where(x => x.IDCampagna == campagneTab.ID && x.Cancellazione == false).ToList();
+                return ListaSessioni;
+            }
+            else
+            {
+                List<SessioniTab> ListaSessioni = new List<SessioniTab>();
+                ListaSessioni = null;
+                return ListaSessioni;
+            }
+        }
+
         public static void Delete(ModelDBContext db, SessioniTab sessioniTab)
         {
             sessioniTab.Cancellazione = true;

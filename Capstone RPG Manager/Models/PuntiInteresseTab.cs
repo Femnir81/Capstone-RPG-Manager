@@ -39,6 +39,45 @@ namespace Capstone_RPG_Manager.Models
             return ListaPuntiInteresse;
         }
 
+        public static List<PuntiInteresseTab> GetListPointsOfInterestAllowedByArea(int idArea, int idLoggedUser, ModelDBContext db) 
+        {
+            List<int> idListaAmbientazioni = db.PermessiDMTab.Where(x => x.IDUtentiTabB == idLoggedUser && x.Permesso == true).Select(x => x.IDAmbientazioniTab).ToList();
+            if (idListaAmbientazioni != null)
+            {
+                List<int> idListaRegioni = db.RegioniTab.Where(x => idListaAmbientazioni.Contains(x.IDAmbientazioniTab) && x.Privata == false && x.Cancellazione == false).Select(x => x.ID).ToList();
+                if (idListaRegioni != null)
+                {
+                    LuoghiTab luoghiTab = db.LuoghiTab.Where(x => idListaRegioni.Contains(x.IDRegioniTab) && x.ID == idArea && x.Privata == false && x.Cancellazione == false).FirstOrDefault();
+                    if (luoghiTab != null)
+                    {
+                        List<PuntiInteresseTab> ListaPuntiInteresse = db.PuntiInteresseTab.Where(x => x.IDLuoghiTab == luoghiTab.ID && x.Privata == false && x.Cancellazione == false).ToList();
+                        return ListaPuntiInteresse;
+                    }
+                    else
+                    {
+                        List<PuntiInteresseTab> ListaPuntiInteresse = new List<PuntiInteresseTab>();
+                        ListaPuntiInteresse = null;
+                        return ListaPuntiInteresse;
+                    }
+                }
+                else
+                {
+                    List<PuntiInteresseTab> ListaPuntiInteresse = new List<PuntiInteresseTab>();
+                    ListaPuntiInteresse = null;
+                    return ListaPuntiInteresse;
+                }
+            }
+            else
+            {
+                List<PuntiInteresseTab> ListaPuntiInteresse = new List<PuntiInteresseTab>();
+                ListaPuntiInteresse = null;
+                return ListaPuntiInteresse;
+            }
+
+            //List<PuntiInteresseTab> ListaPuntiInteresse = db.PuntiInteresseTab.Where(x => x.IDLuoghiTab == id && x.Cancellazione == false && x.LuoghiTab.RegioniTab.AmbientazioniTab.IDUtentiTab == idDM).ToList();
+            //return ListaPuntiInteresse;
+        }
+
         public static void Delete(ModelDBContext db, PuntiInteresseTab puntiInteresseTab)
         {
             puntiInteresseTab.Cancellazione = true;

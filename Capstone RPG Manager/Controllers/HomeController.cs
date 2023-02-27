@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone_RPG_Manager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AmbientazioniTabController.cs" />
+    <Compile Include="Controllers\AmicizieTabController.cs" />
     <Compile Include="Controllers\CampagneTabController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuoghiTabController.cs" />
@@ -165,6 +166,10 @@
     <Compile Include="Migrations\202302131906244_permessiupdate2.designer.cs">
       <DependentUpon>202302131906244_permessiupdate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302161509014_OraMessaggioInAmicizie.cs" />
+    <Compile Include="Migrations\202302161509014_OraMessaggioInAmicizie.designer.cs">
+      <DependentUpon>202302161509014_OraMessaggioInAmicizie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AmbientazioniTab.cs" />
     <Compile Include="Models\AmicizieTab.cs" />
@@ -197,9 +202,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\Site\Arrow.png" />
+    <Content Include="Content\Images\Site\Shield-removebg-preview.png" />
+    <Content Include="Content\Images\Site\WoodenTexture.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\site.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -228,6 +236,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\Fonts\vinque.rg-regular.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -300,6 +309,12 @@
     <Content Include="Views\PermessiDMTab\Details.cshtml" />
     <Content Include="Views\PermessiDMTab\Edit.cshtml" />
     <Content Include="Views\PermessiDMTab\Index.cshtml" />
+    <Content Include="Views\AmicizieTab\Create.cshtml" />
+    <Content Include="Views\AmicizieTab\Delete.cshtml" />
+    <Content Include="Views\AmicizieTab\Details.cshtml" />
+    <Content Include="Views\AmicizieTab\Edit.cshtml" />
+    <Content Include="Views\AmicizieTab\Index.cshtml" />
+    <Content Include="Views\AmicizieTab\_PWProfileMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302131906244_permessiupdate2.resx">
       <DependentUpon>202302131906244_permessiupdate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302161509014_OraMessaggioInAmicizie.resx">
+      <DependentUpon>202302161509014_OraMessaggioInAmicizie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

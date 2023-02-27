@@ -13,6 +13,9 @@ namespace Capstone_RPG_Manager.Models
 
         public string Messaggio { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime OraMessaggio { get; set; }
+
         public bool Cancellazione { get; set; }
 
         public int IDUtentiTabA { get; set; }

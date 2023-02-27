@@ -60,6 +60,22 @@ namespace Capstone_RPG_Manager.Models
             return ListaAmbientazioni;
         }
 
+        public static List<AmbientazioniTab>GetListSettingsAllowedByDM(int idLoggedUser, ModelDBContext db)
+        {
+            List<int> idListaAmbientazioni = db.PermessiDMTab.Where(x => x.IDUtentiTabB == idLoggedUser && x.Permesso == true).Select(x => x.IDAmbientazioniTab).ToList();
+            if (idListaAmbientazioni !=null)
+            {
+                List<AmbientazioniTab> ListaAmbientazioni = db.AmbientazioniTab.Where(x => idListaAmbientazioni.Contains(x.ID) && x.Privata == false && x.Cancellazione == false).ToList();
+                return ListaAmbientazioni;
+            }
+            else
+            {
+                List<AmbientazioniTab> ListaAmbientazioni = new List<AmbientazioniTab>();
+                ListaAmbientazioni = null;
+                return ListaAmbientazioni;
+            }
+        }
+
         public static void Delete(int id, ModelDBContext db, AmbientazioniTab ambientazioniTab)
         {
             ambientazioniTab.Cancellazione = true;

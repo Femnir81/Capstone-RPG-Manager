@@ -22,6 +22,8 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult Details(int? id)
         {
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -136,14 +138,30 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult PWAreasListByRegion(int id)
         {
-            int idDM = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
-            return PartialView("_PWAreasListByRegion", LuoghiTab.GetListAreasByRegion(id, db, idDM));
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
+            if (LoggedUser.DM)
+            {
+                return PartialView("_PWAreasListByRegion", LuoghiTab.GetListAreasByRegion(id, db, LoggedUser.ID));
+            }
+            else
+            {
+                return PartialView("_PWAreasListByRegion", LuoghiTab.GetListAreasAllowedByRegion(id, LoggedUser.ID, db));
+            }            
         }
 
         public ActionResult PWCitiesListByRegion(int id)
         {
-            int idDM = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
-            return PartialView("_PWCitiesListByRegion", LuoghiTab.GetListCitiesByRegion(id, db, idDM));
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
+            if (LoggedUser.DM)
+            {
+                return PartialView("_PWCitiesListByRegion", LuoghiTab.GetListCitiesByRegion(id, db, LoggedUser.ID));
+            }
+            else
+            {
+                return PartialView("_PWCitiesListByRegion", LuoghiTab.GetListCitiesAllowedByRegion(id, LoggedUser.ID, db));
+            }
         }
 
         public ActionResult PrivateOnPW(int id)

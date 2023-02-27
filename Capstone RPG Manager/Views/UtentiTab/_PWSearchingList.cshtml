@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<Capstone_RPG_Manager.Models.UtentiTab>
 
-<div class="container overflow-y-auto m-0 p-0" style="min-height:200px">
+<div class="container overflow-y-auto mx-0 my-5 p-0">
+    <h3 class="text-center my-5">Search Player</h3>
     @using (Html.BeginForm("PWSearchingList", "UtentiTab", FormMethod.Post))
     {
         <p class="d-flex mt-5">
             <input type="text" name="TextUser" class="w-50 form-control me-2" />
-            <input type="submit" value="Search User" class="btn btn-primary w-auto" />
+            <button type="submit" class="btn rpgButton w-auto">Search Player<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></button>
         </p>
     }
 
@@ -15,10 +16,14 @@
     }
     else
     {
-        <table class="table m-0 p-0" style="width: 95%">
+        <table class="table table-borderless align-middle m-0 p-0" style="width: 95%">
             <tr>
+                <th></th>
                 <th>
                     @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    Settings
                 </th>
                 <th>
                     Actions
@@ -27,14 +32,51 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td class="idHidden">
+                        @Html.HiddenFor(modelItem => item.ID)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Username)
                     </td>
                     <td>
-                        <a href="~/PermessiDMTab/InvitationRequest/@item.ID" class="btn btn-sm btn-outline-primary me-2">Click here to invite</a>
+                        <div>
+                            @Html.DropDownList("IDAmbientazioniTab", null, htmlAttributes: new { @class = "form-control dropSetting" })
+                            @Html.ValidationMessage("You have to choose a Setting", "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Click here to invite", "InvitationRequest", "PermessiDMTab", new { idUser = item.ID }, new { @class = "btn btn-sm btn-outline-primary me-2" })*@
+                        <button class="btn rpgButton buttonLink" style="font-size:1.1rem">Click here to invite<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></button>
                     </td>
                 </tr>
             }
         </table>
     }
 </div>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var listButtons = $(".buttonLink")
+        var listIdHidden = $(".idHidden input")
+        var listDropSetting = $(".dropSetting")
+        $.each(listButtons, function (i, singleButton) {
+            $(singleButton).click(function () {
+                var idUtente = listIdHidden.eq(i).val();
+                var idAmbientazione = listDropSetting.eq(i).val();
+                $.ajax({
+                    type: "POST",
+                    url: "/AmicizieTab/InvitationMessage",
+                    data: {idUser: idUtente, idSetting: idAmbientazione}
+                    })
+            })
+        })
+        //$(".buttonLink").each(function (index, value) {
+        //    var button
+        //})
+    @*$("#createLink").click(function () {
+        var selectedValue = $('#ddlSystem option:selected').val();
+
+        window.location = "@Url.Action("Create", "Jobs")?system=" + selectedValue;
+    });*@
+});
+    </script>

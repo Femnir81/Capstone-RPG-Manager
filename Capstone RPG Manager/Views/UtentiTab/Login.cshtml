@@ -41,13 +41,13 @@
 
             <div class="form-group my-3">
                 <div>
-                    <input type="submit" value="Login" class="btn btn-outline-primary" />
+                    <button type="submit" class="btn rpgButton w-100">Login<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></button>
                 </div>
             </div>
         </div>
     }
     <p class="text-danger my-2">@ViewBag.Error</p>
-    <p class="my-2">If you're not registered, sign up @Html.ActionLink("here", "Register", "UtentiTab")</p>
+    <p class="my-2">If you're not registered, sign up @Html.ActionLink("*here*", "Register", "UtentiTab", new { @class = "evidence"})</p>
 
 </div>
 

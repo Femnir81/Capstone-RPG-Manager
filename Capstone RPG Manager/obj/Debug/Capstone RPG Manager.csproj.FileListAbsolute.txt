@@ -95,3 +95,4 @@ C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG M
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.PermessiFromCampagneToAmbientazioni.resources
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.AddMessaggioInAmicizieTab.resources
 C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.permessiupdate2.resources
+C:\Users\Luca\Documents\Luca\Epicode\Backend\Capstone RPG Manager\Capstone RPG Manager\obj\Debug\Capstone_RPG_Manager.Migrations.OraMessaggioInAmicizie.resources

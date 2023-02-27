@@ -116,6 +116,20 @@ namespace Capstone_RPG_Manager.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult InvitationAccepted(string idDM, string idUser, string idSetting)
+        {
+            PermessiDMTab permessiTab = new PermessiDMTab();
+            permessiTab.IDUtentiTabA = Convert.ToInt32(idDM);
+            permessiTab.IDUtentiTabB = Convert.ToInt32(idUser);
+            permessiTab.IDAmbientazioniTab = Convert.ToInt32(idSetting);
+            permessiTab.Permesso = true;
+            db.PermessiDMTab.Add(permessiTab);
+            db.SaveChanges();
+            int idUserOnline = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
+            UtentiTab user = db.UtentiTab.Find(idUserOnline);
+            return RedirectToAction("UserProfile", "UtentiTab", user);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

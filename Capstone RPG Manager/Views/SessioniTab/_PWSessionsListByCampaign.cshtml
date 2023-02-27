@@ -1,10 +1,16 @@
 ﻿@model IEnumerable<Capstone_RPG_Manager.Models.SessioniTab>
 
-<div class="container overflow-y-auto m-0 p-0" style="min-height:200px">
-    <p>
-        @Html.ActionLink("Create New Session", "Create", null , new { @class = "btn btn-outline-success" })
-    </p>
-    <table class="table m-0 p-0" style="width: 95%">
+<div class="container overflow-y-auto mx-0 my-5 p-0">
+    <h3 class="text-center my-5">Settings</h3>
+    @{
+        if (ViewBag.LoggedUser)
+        {
+            <p>
+                <a class="btn rpgButton" href="~/AmbientazioniTab/Create">Create New Setting<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+            </p>
+        }
+    }
+    <table class="table table-borderless m-0 p-0" style="width: 95%">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Data)
@@ -12,11 +18,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Titolo)
             </th>
-            <th>
-                Actions
-            </th>
+            @{
+                if (ViewBag.LoggedUser)
+                {
+                    <th>
+                        Actions
+                    </th>
+                }
+            }
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
@@ -24,14 +34,18 @@
                     @Html.DisplayFor(modelItem => item.Data)
                 </td>
                 <td>
-                    <a href="~/SessioniTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Titolo)</a>
+                    <a class="linkDetail" href="~/SessioniTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Titolo)</a>
                 </td>
-                <td>
-                    <a href="~/SessioniTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="~/SessioniTab/Delete/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
-                </td>
+                @{
+                    if (ViewBag.LoggedUser)
+                    {
+                        <td>
+                            <a href="~/SessioniTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="~/SessioniTab/Delete/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    }
+                }
             </tr>
         }
-
     </table>
 </div>

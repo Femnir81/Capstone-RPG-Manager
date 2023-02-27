@@ -3,15 +3,26 @@
 @{
     ViewBag.Title = "DMScreen";
 }
-
-<h2 class="text-center my-5">Dungeon Master Screen</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    Capstone_RPG_Manager.Models.ModelDBContext db = new Capstone_RPG_Manager.Models.ModelDBContext();
+    var utente = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+    if (utente.DM)
+    {
+        <h2 class="text-center my-5">Dungeon Master Screen</h2>
+    }
+    else
+    {
+        <h2 class="text-center my-5">Player Screen</h2>
+    }
+}
 
 <div class="container">
-    <div class="row m-0 p-0">
-        <div class="col-md-6 p-0">
+    <div class="row m-0 p-1 rowShield">
+        <div class="col-lg-6 p-0">
             @{ Html.RenderAction("PWSettingsListByDM", "AmbientazioniTab");}
         </div>
-        <div class="col-md-6 p-0">
+        <div class="col-lg-6 p-0">
             @{ Html.RenderAction("PWCampaignsListByDM", "CampagneTab");}
         </div>
     </div>

@@ -22,6 +22,8 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult Details(int? id)
         {
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,8 +102,17 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult PWSessionsListByCampaign(int id)
         {
-            int idDM = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
-            return PartialView("_PWSessionsListByCampaign", SessioniTab.GetListSessionsByCampaign(id, db, idDM));
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
+            if (LoggedUser.DM)
+            {
+                return PartialView("_PWSessionsListByCampaign", SessioniTab.GetListSessionsByCampaign(id, db, LoggedUser.ID));
+            }
+            else
+            {
+                return PartialView("_PWSessionsListByCampaign",SessioniTab.GetListSessionsAllowedByCampaign(id, db, LoggedUser.ID));
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

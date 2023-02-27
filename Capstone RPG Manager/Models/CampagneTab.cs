@@ -47,10 +47,49 @@ namespace Capstone_RPG_Manager.Models
             return ListaCampagne;
         }
 
-        public static List<CampagneTab> GetListCampaignsBySetting(int id, ModelDBContext db)
+        public static List<CampagneTab> GetListCampaignsAllowedByDM(int id, ModelDBContext db)
         {
-            List<CampagneTab> ListaCampagne = db.CampagneTab.Where(x => x.IDAmbientazioniTab == id && x.Cancellazione == false).ToList();
+            List<int> idListaAmbientazioni = new List<int>();
+            List<AmbientazioniTab> ListaAmbientazioni = AmbientazioniTab.GetListSettingsAllowedByDM(id, db);
+            if (ListaAmbientazioni != null)
+            {
+                foreach (AmbientazioniTab item in ListaAmbientazioni)
+                {
+                    idListaAmbientazioni.Add(item.ID);
+                }
+                List<CampagneTab> ListaCampagne = db.CampagneTab.Where( x => idListaAmbientazioni.Contains(x.IDAmbientazioniTab) && x.Cancellazione == false).ToList();
+                return ListaCampagne;
+            }
+            else
+            {
+                List<CampagneTab> ListaCampagne = new List<CampagneTab>();
+                ListaCampagne = null;
+                return ListaCampagne;
+            }
+        }
+
+        public static List<CampagneTab> GetListCampaignsBySetting(int id, int idLoggedUser, ModelDBContext db)
+        {
+            List<CampagneTab> ListaCampagne = db.CampagneTab.Where(x => x.IDAmbientazioniTab == id && x.AmbientazioniTab.UtentiTab.ID == idLoggedUser && x.Cancellazione == false).ToList();
             return ListaCampagne;
         }
+
+        public static List<CampagneTab> GetListCampaignsAllowedBySetting(int id, int idLoggedUser, ModelDBContext db)
+        {
+            AmbientazioniTab ambientazioniTab = AmbientazioniTab.GetListSettingsAllowedByDM(idLoggedUser, db).Where(x => x.ID == id).FirstOrDefault();
+            if (ambientazioniTab != null)
+            {
+                List<CampagneTab> ListaCampagne = db.CampagneTab.Where(x => x.IDAmbientazioniTab == ambientazioniTab.ID && x.Cancellazione == false).ToList();
+                return ListaCampagne;
+            }
+            else
+            {
+                List<CampagneTab> ListaCampagne = new List<CampagneTab>();
+                ListaCampagne = null;
+                return ListaCampagne;
+            }
+        }
+
+
     }
 }

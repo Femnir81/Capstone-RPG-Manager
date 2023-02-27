@@ -22,6 +22,8 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult Details(int? id)
         {
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,13 +101,31 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult PWCampaignsListByDM()
         {
-            int id = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
-            return PartialView("_PWCampaignsListByDM", CampagneTab.GetListCampaignsByDM(id, db));
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
+            if (LoggedUser.DM == true)
+            {
+                return PartialView("_PWCampaignsListByDM", CampagneTab.GetListCampaignsByDM(LoggedUser.ID, db));
+            }
+            else
+            {
+                return PartialView("_PWCampaignsListByDM", CampagneTab.GetListCampaignsAllowedByDM(LoggedUser.ID, db));
+            }
+            
         }
 
         public ActionResult PWCampaignsListBySetting(int id)
         {
-            return PartialView("_PWCampaignsListBySetting", CampagneTab.GetListCampaignsBySetting(id, db));
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
+            if (LoggedUser.DM == true)
+            {
+                return PartialView("_PWCampaignsListBySetting", CampagneTab.GetListCampaignsBySetting(id, LoggedUser.ID, db));
+            }
+            else
+            {
+                return PartialView("_PWCampaignsListBySetting", CampagneTab.GetListCampaignsAllowedBySetting(id, LoggedUser.ID, db));
+            }
         }
 
         protected override void Dispose(bool disposing)

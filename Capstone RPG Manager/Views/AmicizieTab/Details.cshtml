@@ -1,0 +1,50 @@
+﻿@model Capstone_RPG_Manager.Models.AmicizieTab
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AmicizieTab</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UtentiTab.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtentiTab.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtentiTab1.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtentiTab1.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Messaggio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Messaggio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cancellazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cancellazione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

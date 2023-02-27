@@ -48,6 +48,22 @@ namespace Capstone_RPG_Manager.Models
             return ListaRegioni;
         }
 
+        public static List<RegioniTab> GetListRegionsAllowedByCampaign(int idSetting, int idLoggedUser, ModelDBContext db)
+        {
+            AmbientazioniTab ambientazioniTab = AmbientazioniTab.GetListSettingsAllowedByDM(idLoggedUser, db).Where(x => x.ID == idSetting).FirstOrDefault();
+            if (ambientazioniTab != null)
+            {
+                List<RegioniTab> ListaRegioni = db.RegioniTab.Where(x => x.IDAmbientazioniTab == ambientazioniTab.ID && x.Privata == false && x.Cancellazione == false).ToList();
+                return ListaRegioni;
+            }
+            else
+            {
+                List<RegioniTab> ListaRegioni = new List<RegioniTab>();
+                ListaRegioni = null;
+                return ListaRegioni;
+            }
+        }
+
         public static void Delete(int id, ModelDBContext db, RegioniTab regioniTab)
         {
             regioniTab.Cancellazione = true;

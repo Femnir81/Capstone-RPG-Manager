@@ -5,22 +5,43 @@
 }
 
 <h2 class="text-center my-5">
-    @Model.Nome @if (Model.Privata)
+    @Model.Nome @if (ViewBag.LoggedUser)
     {
-        <i class="fa-solid fa-lock mx-2"></i>
-    }
-    else
-    {
-        <i class="fa-solid fa-unlock mx-2"></i>
+        if (Model.Privata)
+        {
+            <i class="fa-solid fa-lock mx-2"></i>
+        }
+        else
+        {
+            <i class="fa-solid fa-unlock mx-2"></i>
+        }
     }
 </h2>
-
-<p class="d-flex justify-content-end">
-    <a href="~/AmbientazioniTab/PrivateOnDetails/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
-    <a href="~/AmbientazioniTab/Edit/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
-    <a href="~/AmbientazioniTab/Delete/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
-</p>
-
+@if (ViewBag.LoggedUser)
+{
+    <p class="d-flex justify-content-end">
+        <a href="~/AmbientazioniTab/PrivateOnDetails/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
+        <a href="~/AmbientazioniTab/Edit/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a data-bs-toggle="modal" data-bs-target="@("#deleteSetting" + Model.ID)" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+        <div class="modal fade" id="@("deleteSetting" + Model.ID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-center" id="exampleModalLabel">Attention!!!</h3>
+                        <button type="button" class="btn-close" style="opacity:1" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to DELETE this Setting? You will also DELETE Regions, Areas, Cities and Points of Interest connected to it!!!</p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-evenly">
+                        <a class="btn rpgButtonDelete w-25" href="~/AmbientazioniTab/Delete/@Model.ID">Delete<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                        <a class="btn rpgButton w-25" data-bs-dismiss="modal">Close<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p>
+}
 <div class="container my-5">
     @{
         if (Model.Immagine != null)
@@ -38,8 +59,8 @@
         <div class="col-md-6 p-0">
             @{ Html.RenderAction("PWRegionsListBySetting", "RegioniTab");}
         </div>
-        @*<div class="col-md-6 p-0">
+        <div class="col-md-6 p-0">
             @{ Html.RenderAction("PWCampaignsListBySetting", "CampagneTab");}
-        </div>*@
+        </div>
     </div>
 </div>

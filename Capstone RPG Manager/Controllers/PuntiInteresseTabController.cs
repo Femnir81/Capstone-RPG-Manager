@@ -22,6 +22,8 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult Details(int? id)
         {
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -134,8 +136,16 @@ namespace Capstone_RPG_Manager.Controllers
 
         public ActionResult PWPointsOfInterestListByArea(int id)
         {
-            int idDM = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
-            return PartialView("_PWPointsOfInterestListByArea", PuntiInteresseTab.GetListPointsOfInterestByArea(id, db, idDM));
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            ViewBag.LoggedUser = LoggedUser.DM;
+            if (LoggedUser.DM)
+            {
+                return PartialView("_PWPointsOfInterestListByArea", PuntiInteresseTab.GetListPointsOfInterestByArea(id, db, LoggedUser.ID));
+            }
+            else
+            {
+                return PartialView("_PWPointsOfInterestListByArea", PuntiInteresseTab.GetListPointsOfInterestAllowedByArea(id, LoggedUser.ID, db));
+            }
         }
 
         public ActionResult PrivateOnPW(int id)

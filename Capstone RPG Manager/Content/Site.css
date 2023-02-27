@@ -1,6 +1,258 @@
-﻿body {
+﻿@font-face {
+    font-family: 'vinque.rg-regular';
+    src: url('fonts/vinque.rg-regular.otf') format('opentype');
+}
+body {
     padding-top: 0px;
     padding-bottom: 0px;
+    background-color: #ffde78;
+    font-family: 'vinque.rg-regular';
+}
+
+nav {
+    background-color: black;
+}
+
+.navbar-brand {
+    color: red;
+}
+
+.nav-link {
+    font-size: 1.3rem;
+    color: red;
+}
+
+.nav-link:hover {
+    color: red;
+    text-shadow: 0px 0px white;
+}
+
+.currentLink {
+    color: orangered;
+}
+
+.fa-bars {
+    color: red;
+}
+
+/*Bottoni*/
+.rpgButton {
+    color: #ffde78;
+    font-size: 1.4rem;
+    text-shadow: 1px 1px 20px black;
+    box-shadow: 3px 3px 3px 3px black;
+    background-image: url('images/site/woodentexture.jpg');
+    --bs-btn-border-radius: 10px;
+    position: relative;
+}
+
+.rpgButton:hover {
+    color: #ffde78;
+    font-size: 1.4rem;
+    font-weight:bold;
+    animation: ombra 1s linear 500ms 1 normal forwards;
+}
+
+.rpgButtonDelete {
+    color: #ffb74a;
+    font-size: 1.4rem;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px 3px black;
+    background-image: url('images/site/woodentexture.jpg');
+    --bs-btn-border-radius: 10px;
+    position: relative;
+}
+
+.rpgButtonDelete:hover {
+    color: red;
+    font-size: 1.4rem;
+    text-shadow: 0px 0px 0px white;
+    font-weight:bold;
+    animation: ombra 1s linear 500ms 1 normal forwards;
+}
+
+@keyframes ombra {
+    0% {
+        box-shadow: 0px 0px 0px 0px black;
+    }
+
+    100% {
+        box-shadow: 0px -2px 20px 3px orangered;
+    }
+}
+
+.arrow {
+    display: none;
+    pointer-events: none;
+    position: absolute;
+    z-index: 5;
+    /*top: -100px;
+    left: 460px;
+    transform: rotate(279deg);*/
+}
+
+.rpgButton:hover .arrow {
+    display: unset;
+    animation: arrow 500ms linear 0s 1 normal forwards;
+}
+
+.rpgButtonDelete:hover .arrow {
+    display: unset;
+    animation: arrow 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes arrow {
+    0% {
+        display: unset;
+        opacity: 0;
+        top: -84px;
+        left: 491px;
+        transform: rotate(290deg);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        top: -125px;
+        left: 330px;
+        transform: rotate(270deg);
+    }
+
+    100% {
+        top: -70px;
+        left: 150px;
+        transform: rotate(250deg);
+    }
+}
+
+h2 {
+    font-size: 4.2rem;
+    color: black;
+}
+
+h3 {
+    font-size: 2.8rem;
+    color: black;
+}
+
+th, h4 {
+    font-size: 1.4rem;
+    color: black;
+}
+
+td {
+    font-size: 1.1rem;
+    color: black;
+}
+
+.linkDetail, p {
+    font-size: 1.1rem;
+    color: #4c2414;
+}
+
+.linkDetail:hover {
+    color: #ffde78;
+    padding: 4px;
+    background-image: url('images/site/woodentexture.jpg');
+}
+
+.evidence {
+    font-size: 1.1rem;
+    color: #6599ff;
+    text-shadow: 0px 0px black;
+}
+
+.evidence:hover {
+    font-size: 1.2rem;
+    color: #6599ff;
+    text-shadow: 0px 0px black;
+}
+
+/*Icone*/
+
+i.fa-unlock-keyhole, i.fa-pen-to-square {
+    color: #4c2414;
+}
+
+i.fa-unlock-keyhole:hover, i.fa-pen-to-square:hover, i.fa-trash-can:hover {
+    animation: shaking 1s linear 0s 1 normal forwards;
+}
+
+i.fa-trash-can {
+    color: red;
+    cursor: pointer;
+}
+
+i.fa-arrows-rotate {
+    color: slategray;
+}
+
+i.fa-arrows-rotate:hover {
+    animation: rotatingArrows 500ms linear 0s infinite normal none;
+}
+
+@keyframes rotatingArrows {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shaking {
+    0%, 100% {
+        transform: rotate(0deg) scale(1.3);
+        transform-origin: 50% 100%;
+    }
+
+    10% {
+        transform: rotate(2deg) scale(1.3);
+    }
+
+    20%, 40%, 60% {
+        transform: rotate(-4deg) scale(1.3);
+    }
+
+    30%, 50%, 70% {
+        transform: rotate(4deg) scale(1.3);
+    }
+
+    80% {
+        transform: rotate(-2deg) scale(1.3);
+    }
+
+    90% {
+        transform: rotate(2deg) scale(1.3);
+    }
+}
+
+.rowShield {
+    border: 10px solid;
+    /*border-radius: 0px 0px 100px 100px;*/
+    border-image: url('images/site/woodentexture.jpg') 117 / 10px / 0px round;
+    box-shadow: 3px 3px 3px 3px black;
+}
+
+.bgMessage {
+    background-color: rgb(255 153 0 / 40%);
+    box-shadow: 3px 3px 3px 3px black;
+}
+
+.modal-content {
+    background-color: #ffb74a;
+    box-shadow: 3px 3px 3px 3px black;
+}
+
+.modal-header {
+    border-bottom: 1px solid black;
+}
+
+.modal-footer {
+    border-top: 1px solid black;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -17,15 +269,24 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
+.form-control {
+    font-size: 1.1rem;
+    width: 400px;
+}
+
+label{
+    color: black;
+}
+
 input,
 select,
 textarea {
     max-width: 400px;
-    width:400px;
+    width: 400px;
 }
 
-.navbar-inverse .navbar-toggle:hover,
+/*.navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
     background-color: #777;
     border-color: #fff
-}
+}*/

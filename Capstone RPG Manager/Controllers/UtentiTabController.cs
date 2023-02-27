@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.Services.Description;
 using Capstone_RPG_Manager.Models;
 
 namespace Capstone_RPG_Manager.Controllers
@@ -166,6 +167,7 @@ namespace Capstone_RPG_Manager.Controllers
         {
             int idUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
             UtentiTab user = db.UtentiTab.Find(idUser);
+            ViewBag.Messages = db.AmicizieTab.Where(x => x.IDUtentiTabB == idUser && x.Cancellazione == false).OrderBy(x => x.OraMessaggio).Count();
             return View(user);
         }
 
@@ -182,11 +184,14 @@ namespace Capstone_RPG_Manager.Controllers
             }
             db.Entry(utentiTab).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("UserProfile", utentiTab);
+            //return RedirectToAction("UserProfile", utentiTab);
+            return RedirectToAction("DMScreen", "Home");
         }
 
         public ActionResult PWSearchingList()
         {
+            int idDM = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
+            ViewBag.IDAmbientazioniTab = new SelectList(AmbientazioniTab.GetListSettingsByDM(idDM, db), "ID", "Nome");
             List<UtentiTab> ListaUtenti = (List<UtentiTab>)TempData["ListaUtenti"];
             return PartialView("_PWSearchingList", ListaUtenti);
         }

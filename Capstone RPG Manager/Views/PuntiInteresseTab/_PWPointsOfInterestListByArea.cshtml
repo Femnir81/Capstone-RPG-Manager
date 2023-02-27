@@ -1,45 +1,74 @@
 ﻿@model IEnumerable<Capstone_RPG_Manager.Models.PuntiInteresseTab>
 
-<div class="container overflow-y-auto m-0 p-0">
-    <p>
-        @Html.ActionLink("Create New Point of Interest", "Create", null, new { @class = "btn btn-outline-success" })
-    </p>
-    <table class="table m-0 p-0" style="width: 95%">
+<div class="container overflow-y-auto mx-0 my-5 p-0">
+    <h3 class="text-center my-5">Points of Interest</h3>
+    @{
+        if (ViewBag.LoggedUser)
+        {
+            <p>
+                <a class="btn rpgButton" href="~/PuntiInteresseTab/Create">Create New Setting<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+            </p>
+        }
+    }
+    <table class="table table-borderless m-0 p-0" style="width: 95%">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Privata)
-            </th>
-            <th>
-                Actions
-            </th>
+            @{
+                if (ViewBag.LoggedUser)
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.Privata)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                }
+            }
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <a href="~/PuntiInteresseTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
+                    <a class="linkDetail" href="~/PuntiInteresseTab/Details/@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                 </td>
                 @{
-                    if (item.Privata == true)
+                    if (ViewBag.LoggedUser)
                     {
-                        <td><i class="fa-solid fa-lock"></i></td>
-                    }
-                    else
-                    {
-                        <td><i class="fa-solid fa-unlock"></i></td>
+                        if (item.Privata == true)
+                        {
+                            <td><i class="fa-solid fa-lock"></i></td>
+                        }
+                        else
+                        {
+                            <td><i class="fa-solid fa-unlock"></i></td>
+                        }
+                        <td>
+                            <a href="~/PuntiInteresseTab/PrivateOnPW/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
+                            <a href="~/PuntiInteresseTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a data-bs-toggle="modal" data-bs-target="@("#deletePoI" + item.ID)" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+                            <div class="modal fade" id="@("deletePoI" + item.ID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="text-center" id="exampleModalLabel">Attention!!!</h3>
+                                            <button type="button" class="btn-close" style="opacity:1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to DELETE this Point of Interest?</p>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-evenly">
+                                            <a class="btn rpgButtonDelete w-25" href="~/PuntiInteresseTab/Delete/@item.ID">Delete<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                                            <a class="btn rpgButton w-25" data-bs-dismiss="modal">Close<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     }
                 }
-                <td>
-                    <a href="~/PuntiInteresseTab/PrivateOnPW/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Private/Public" class="me-2"><i class="fa-solid fa-unlock-keyhole"></i></a>
-                    <a href="~/PuntiInteresseTab/Edit/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="~/PuntiInteresseTab/Delete/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
-                </td>
             </tr>
         }
-
     </table>
 </div>

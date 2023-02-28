@@ -315,6 +315,7 @@
     <Content Include="Views\AmicizieTab\Edit.cshtml" />
     <Content Include="Views\AmicizieTab\Index.cshtml" />
     <Content Include="Views\AmicizieTab\_PWProfileMessages.cshtml" />
+    <Content Include="Views\PermessiDMTab\_PWPermissionsListByDM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

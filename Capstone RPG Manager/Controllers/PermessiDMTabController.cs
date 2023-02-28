@@ -92,28 +92,14 @@ namespace Capstone_RPG_Manager.Controllers
             return View(permessiDMTab);
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PermessiDMTab permessiDMTab = db.PermessiDMTab.Find(id);
-            if (permessiDMTab == null)
-            {
-                return HttpNotFound();
-            }
-            return View(permessiDMTab);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            PermessiDMTab permessiDMTab = db.PermessiDMTab.Find(id);
-            db.PermessiDMTab.Remove(permessiDMTab);
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            PermessiDMTab permesso = db.PermessiDMTab.Find(id);
+            permesso.Cancellazione = true;
+            db.Entry(permesso).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("UserProfile", "UtentiTab", LoggedUser);
         }
 
         public ActionResult InvitationAccepted(string idDM, string idUser, string idSetting)
@@ -128,6 +114,30 @@ namespace Capstone_RPG_Manager.Controllers
             int idUserOnline = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
             UtentiTab user = db.UtentiTab.Find(idUserOnline);
             return RedirectToAction("UserProfile", "UtentiTab", user);
+        }
+
+        public ActionResult PWPermissionsListByDM()
+        {
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            List<PermessiDMTab> ListaPermessi = db.PermessiDMTab.Where(x => x.IDUtentiTabA == LoggedUser.ID && x.Cancellazione == false).ToList();
+            return PartialView("_PWPermissionsListByDM", ListaPermessi);
+        }
+
+        public ActionResult SetPermission(int id)
+        {
+            UtentiTab LoggedUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault();
+            PermessiDMTab permesso = db.PermessiDMTab.Find(id);
+            if (permesso.Permesso == true) 
+            {
+                permesso.Permesso = false;
+            }
+            else
+            {
+                permesso.Permesso = true;
+            }
+            db.Entry(permesso).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("UserProfile", "UtentiTab", LoggedUser);
         }
 
         protected override void Dispose(bool disposing)

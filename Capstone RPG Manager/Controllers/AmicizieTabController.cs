@@ -138,6 +138,15 @@ namespace Capstone_RPG_Manager.Controllers
             return PartialView("_PWProfileMessages", Messaggi);
         }
 
+        public JsonResult DeleteMessage(int id)
+        {
+            AmicizieTab messaggio = db.AmicizieTab.Find(id);
+            messaggio.Cancellazione = true;
+            db.Entry(messaggio).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json("Delete", JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

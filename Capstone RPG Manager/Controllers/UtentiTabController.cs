@@ -167,6 +167,15 @@ namespace Capstone_RPG_Manager.Controllers
         {
             int idUser = db.UtentiTab.Where(x => x.Username == User.Identity.Name).FirstOrDefault().ID;
             UtentiTab user = db.UtentiTab.Find(idUser);
+            ViewBag.NumSettingsLive = db.AmbientazioniTab.Where(x => x.IDUtentiTab == idUser && x.Cancellazione == false).Count();
+            ViewBag.NumSettingsDelete = db.AmbientazioniTab.Where(x => x.IDUtentiTab == idUser && x.Cancellazione == true).Count();
+            ViewBag.NumSettingsTot = db.AmbientazioniTab.Where(x => x.IDUtentiTab == idUser).Count();
+            ViewBag.NumCampaignsLive = db.CampagneTab.Where(x => x.AmbientazioniTab.IDUtentiTab == idUser && x.Cancellazione == false).Count();
+            ViewBag.NumCampaignsDelete = db.CampagneTab.Where(x => x.AmbientazioniTab.IDUtentiTab == idUser && x.Cancellazione == true).Count();
+            ViewBag.NumCampaignsTot = db.CampagneTab.Where(x => x.AmbientazioniTab.IDUtentiTab == idUser).Count();
+            ViewBag.NumSessionsLive = db.SessioniTab.Where(x => x.CampagneTab.AmbientazioniTab.IDUtentiTab == idUser && x.Cancellazione == false).Count();
+            ViewBag.NumSessionsDelete = db.SessioniTab.Where(x => x.CampagneTab.AmbientazioniTab.IDUtentiTab == idUser && x.Cancellazione == true).Count();
+            ViewBag.NumSessionsTot = db.SessioniTab.Where(x => x.CampagneTab.AmbientazioniTab.IDUtentiTab == idUser).Count();
             ViewBag.Messages = db.AmicizieTab.Where(x => x.IDUtentiTabB == idUser && x.Cancellazione == false).OrderBy(x => x.OraMessaggio).Count();
             return View(user);
         }

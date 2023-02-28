@@ -14,7 +14,14 @@ nav {
 }
 
 .navbar-brand {
+    font-size: 2.4rem;
     color: red;
+}
+
+.navbar-brand:hover {
+    color: red;
+    text-shadow: 0px 0px white;
+    text-decoration: underline;
 }
 
 .nav-link {
@@ -25,6 +32,7 @@ nav {
 .nav-link:hover {
     color: red;
     text-shadow: 0px 0px white;
+    text-decoration: underline;
 }
 
 .currentLink {
@@ -127,6 +135,25 @@ nav {
     }
 }
 
+.divMessage {
+    position: relative;
+}
+
+.buttonX {
+    color: red;
+    font-weight: bold;
+    background-color: transparent;
+    border-color: transparent;
+    position: absolute;
+    top: 0px;
+    right: -3px;
+}
+
+.buttonX:hover {
+    top: -6px;
+    font-size: 20px;
+}
+
 h2 {
     font-size: 4.2rem;
     color: black;
@@ -172,7 +199,7 @@ td {
 
 /*Icone*/
 
-i.fa-unlock-keyhole, i.fa-pen-to-square {
+i.fa-unlock-keyhole, i.fa-pen-to-square, i.fa-user-secret {
     color: #4c2414;
 }
 

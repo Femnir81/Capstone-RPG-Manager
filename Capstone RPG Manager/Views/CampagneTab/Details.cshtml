@@ -9,7 +9,24 @@
 {
     <p class="d-flex justify-content-end">
         <a href="~/CampagneTab/Edit/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" class="me-2"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a href="~/CampagneTab/Delete/@Model.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+        <a data-bs-toggle="modal" data-bs-target="@("#deleteCampaign" + Model.ID)" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+        <div class="modal fade" id="@("deleteCampaign" + Model.ID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-center" id="exampleModalLabel">Attention!!!</h3>
+                        <button type="button" class="btn-close" style="opacity:1" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to DELETE this Campaign? You will also DELETE Sessions connected to it!!!</p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-evenly">
+                        <a class="btn rpgButtonDelete w-25" href="~/CampagneTab/Delete/@Model.ID">Delete<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                        <a class="btn rpgButton w-25" data-bs-dismiss="modal">Close<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </p>
 }
 <div class="container my-5">

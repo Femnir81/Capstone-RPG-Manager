@@ -2,6 +2,7 @@ namespace Capstone_RPG_Manager.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -11,6 +12,7 @@ namespace Capstone_RPG_Manager.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Permission")]
         public bool Permesso { get; set; }
 
         public bool Cancellazione { get; set; }

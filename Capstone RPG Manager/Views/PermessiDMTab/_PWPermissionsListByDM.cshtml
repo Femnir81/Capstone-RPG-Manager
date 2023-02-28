@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Capstone_RPG_Manager.Models.PermessiDMTab>
+
+<div class="container overflow-y-auto mx-0 my-5 p-0" style="min-height:200px">
+    <h3 class="text-center my-5">Permissions</h3>
+    <table class="table table-borderless m-0 p-0" style="width: 95%">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UtentiTab1.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmbientazioniTab.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permesso)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UtentiTab1.Username)
+                </td>
+                <td>
+                    <a class="linkDetail" href="~/AmbientazioniTab/Details/@item.IDAmbientazioniTab">@Html.DisplayFor(modelItem => item.AmbientazioniTab.Nome)</a>
+                </td>
+                @if (item.Permesso == true)
+                {
+                    <td><i class="fa-solid fa-circle" style="color:limegreen"></i></td>
+                }
+                else
+                {
+                    <td><i class="fa-solid fa-circle" style="color:red"></i></td>
+                }
+                <td>
+                    <a href="~/PermessiDMTab/SetPermission/@item.ID" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set Permission On/Off" class="me-2"><i class="fa-solid fa-user-secret"></i></a>
+                    <a data-bs-toggle="modal" data-bs-target="@("#deleteSetting" + item.ID)" class="me-2"><i class="fa-solid fa-trash-can"></i></a>
+                    <div class="modal fade" id="@("deleteSetting" + item.ID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="text-center" id="exampleModalLabel">Attention!!!</h3>
+                                    <button type="button" class="btn-close" style="opacity:1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to DELETE this Permission?</p>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-evenly">
+                                    <a class="btn rpgButtonDelete w-25" href="~/PermessiDMTab/Delete/@item.ID">Delete<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                                    <a class="btn rpgButton w-25" data-bs-dismiss="modal">Close<img class="arrow" src="~/Content/Images/Site/Arrow.png" width="20" height="115" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

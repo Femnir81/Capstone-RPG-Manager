@@ -1,14 +1,38 @@
 ﻿@model IEnumerable<Capstone_RPG_Manager.Models.AmicizieTab>
 
 <div class="container h-100 m-0 px-2 pt-2 pb-4">
-@foreach (var item in Model) {
-    <div class="my-2">
-        <p class="fs-6 fw-bold ms-2 my-0 p-0">@Html.DisplayFor(modelItem => item.UtentiTab.Username)</p>
-        @{ 
-            ViewBag.Messaggio = MvcHtmlString.Create(item.Messaggio);
-        }
-        <p class="rounded-4 mx-1 my-0 p-2 bgMessage">@ViewBag.Messaggio</p>
-    <p class="float-end mx-1 my-1 p-0" style="font-size: 0.8rem">@Html.DisplayFor(modelItem => item.OraMessaggio)</p>
-    </div>
-}
+    <h3 class="text-center my-5">Messages</h3>
+    @foreach (var item in Model)
+    {
+        <div class="mt-2 mb-5 divMessage">
+            <p class="fs-6 fw-bold ms-2 my-0 p-0">@Html.DisplayFor(modelItem => item.UtentiTab.Username)</p>
+            @{
+                ViewBag.Messaggio = MvcHtmlString.Create(item.Messaggio);
+            }
+            <p class="rounded-4 mx-1 my-0 p-2 bgMessage">@ViewBag.Messaggio</p>
+            <p class="float-end mx-1 my-1 p-0" style="font-size: 0.8rem">@Html.DisplayFor(modelItem => item.OraMessaggio)</p>
+            <p class="idMessage">@Html.HiddenFor(modelItem => item.ID)</p>
+            <button class="buttonX" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Message">X</button>
+        </div>
+    }
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var listaID = $(".idMessage input")
+        var listaButtonX = $(".buttonX")
+        var ListaDivMessage = $(".divMessage")
+        $.each(listaButtonX, function (i, singleButton) {
+            $(singleButton).click(function () {
+                var idMessaggio = listaID.eq(i).val()
+                var divMessaggio = ListaDivMessage.eq(i)
+                $.ajax({
+                    type: "POST",
+                    url: "/AmicizieTab/DeleteMessage",
+                    data: { id: idMessaggio },
+                    success: $(divMessaggio).hide()
+                })
+            })
+        })
+    })
+</script>

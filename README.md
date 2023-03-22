@@ -30,8 +30,6 @@ Un Player può accettare un invito da parte di un Dungeon Master e dopo aver acc
 ![image](https://user-images.githubusercontent.com/112469931/227062794-0bc844ea-656b-40ac-8c6b-8911b57f19ac.png)
 
 
-
-
 Un utente tramite uno switch può scegliere se essere Dungeon Master o se essere Player.
 
 ![image](https://user-images.githubusercontent.com/112469931/227062492-e0641627-5cf4-4bbe-a042-5872c6aa8100.png)

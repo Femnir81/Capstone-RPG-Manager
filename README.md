@@ -1,4 +1,4 @@
-# Capstone-RPG-Manager
+# Capstone-RPG-Manager (C#, MVC, SQL Server, Entity Framework, jQuery)
 Gestionale per i giochi di ruolo. Gli utenti possono gestire in modo autonomo i propri ruoli, quello di Dungeon Master e quello di Player.
 
 Un Dungeon Master può creare la propria ambientazione, quindi il mondo di gioco, regioni e città, inserendo anche un'immagine (con dei limiti di peso).
